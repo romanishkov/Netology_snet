@@ -38,16 +38,11 @@ fi
 if [[ -z "$SUBNET" ]]; then
 	for SUBNET in {1..255}
 	do
-		if [[ -z "$HOST" ]]; then
-			for HOST in {1..255}
-			do
-				echo "[*] IP : ${PREFIX}.${SUBNET}.${HOST}"
-				arping -c 3 -I "$INTERFACE" "${PREFIX}.${SUBNET}.${HOST}" 2> /dev/null
-			done
-		else
+		for HOST in {1..255}
+		do
 			echo "[*] IP : ${PREFIX}.${SUBNET}.${HOST}"
-            arping -c 3 -I "$INTERFACE" "${PREFIX}.${SUBNET}.${HOST}" 2> /dev/null
-		fi
+			arping -c 3 -I "$INTERFACE" "${PREFIX}.${SUBNET}.${HOST}" 2> /dev/null
+		done
 	done
 else
 	if [[ -z "$HOST" ]]; then
